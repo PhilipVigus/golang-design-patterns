@@ -18,10 +18,14 @@ func TestGetInstance(t *testing.T) {
 
 func TestAddOne(t *testing.T) {
 	firstCounter := GetInstance()
-	firstCounter.AddOne()
+	currentCount := firstCounter.AddOne()
+
+	if currentCount != 1 {
+		t.Error("AddOne should be called once")
+	}
 
 	secondCounter := GetInstance()
-	currentCount := secondCounter.AddOne()
+	currentCount = secondCounter.AddOne()
 
 	if currentCount != 2 {
 		t.Error("AddOne should act on the same singleton instance")
